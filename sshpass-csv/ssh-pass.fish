@@ -1,7 +1,7 @@
 function icon
     set filePath "/home/dagimal/.ssh/icon.csv"
-    set name (awk -F',' '{print $1, "("$2"@"$3")"}' $filePath | fzf)
-    
+    set title (awk -F',' '{print $1, "("$2"@"$3")"}' $filePath | fzf)
+    set name (string split ' ' $title)[1]
     # Variable Check
     if test -n "$name"
         set user (grep "^$name," $filePath | awk -F',' '{print $2}')
