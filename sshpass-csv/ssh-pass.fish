@@ -1,9 +1,9 @@
 function icon
     set filePath "/home/dagimal/.ssh/icon.csv"
-    set title (awk -F',' '{print $1, "("$2"@"$3")"}' $filePath | grep -v '#' | fzf)
-    set name (string split ' ' $title)[1]
+    set title (awk -F',' '!/^$|^#/ {print $1, "("$2"@"$3")"}' $filePath | fzf)
     
-    if test -n "$name"
+    if test -n "$title"
+        set name (string split ' ' $title)[1]
         set user (grep "^$name," $filePath | awk -F',' '{print $2}')
         set host (grep "^$name," $filePath | awk -F',' '{print $3}')
         set pass (grep "^$name," $filePath | awk -F',' '{print $4}')
