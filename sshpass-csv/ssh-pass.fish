@@ -1,7 +1,7 @@
 function icon
     set filePath "/home/dagimal/.ssh/icon.csv"
-    set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5}' $filePath | fzf)
-    set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
+    set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5","$1" ("$2"@"$3")"}' $filePath | fzf --with-nth 6 --delimiter ,)
+    # set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
     
     if test -n "$title"
         set name (echo $getCSV | awk -F',' '{print $1}')
@@ -24,8 +24,8 @@ end
 
 function icons
     set filePath "/home/dagimal/.ssh/icon.csv"
-    set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5}' $filePath | fzf)
-    set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
+    set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5","$1" ("$2"@"$3")"}' $filePath | fzf --with-nth 6 --delimiter ,)
+    # set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
     
     if test -n "$title"
         set name (echo $getCSV | awk -F',' '{print $1}')
