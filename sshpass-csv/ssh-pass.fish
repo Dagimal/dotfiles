@@ -3,7 +3,7 @@ function icon
     set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5","$1" ("$2"@"$3")"}' $filePath | fzf --with-nth 6 --delimiter ,)
     # set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
     
-    if test -n "$title"
+    if test -n "$getCSV"
         set name (echo $getCSV | awk -F',' '{print $1}')
         set user (echo $getCSV | awk -F',' '{print $2}')
         set host (echo $getCSV | awk -F',' '{print $3}')
@@ -27,7 +27,7 @@ function icons
     set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5","$1" ("$2"@"$3")"}' $filePath | fzf --with-nth 6 --delimiter ,)
     # set title (echo $getCSV | awk -F',' '{printf "%s (%s@%s)\n", $1, $2, $3}')
     
-    if test -n "$title"
+    if test -n "$getCSV"
         set name (echo $getCSV | awk -F',' '{print $1}')
         set user (echo $getCSV | awk -F',' '{print $2}')
         set host (echo $getCSV | awk -F',' '{print $3}')
