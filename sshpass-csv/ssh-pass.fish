@@ -55,7 +55,8 @@ function copy_pass
         set pass (echo $getCSV | awk -F',' '{print $4}')
         
         if test -n "$pass"
-            echo $pass | xclip -selection clipboard  # or use xsel --clipboard if preferred
+            #echo $pass | xclip -selection clipboard  # or use xsel --clipboard if preferred
+            printf "%s" $pass | xclip -selection clipboard
             echo "Password copied to clipboard."
         else
             echo "Password is empty."
