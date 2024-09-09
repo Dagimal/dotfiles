@@ -45,3 +45,22 @@ function icons
         echo "No host selected."
     end
 end
+
+# Function Untuk Copy Password
+function copy_pass
+    set filePath "/home/dagimal/.ssh/icon.csv"
+    set getCSV (awk -F',' '!/^$|^#/ {print $1","$2","$3","$4","$5","$1" ("$2"@"$3")"}' $filePath | fzf -e --with-nth 6 --delimiter ,)
+    
+    if test -n "$getCSV"
+        set pass (echo $getCSV | awk -F',' '{print $4}')
+        
+        if test -n "$pass"
+            echo $pass | xclip -selection clipboard  # or use xsel --clipboard if preferred
+            echo "Password copied to clipboard."
+        else
+            echo "Password is empty."
+        end
+    else
+        echo "No host selected."
+    end
+end
