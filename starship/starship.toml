@@ -1,2 +1,4 @@
 add_newline = false 
 
+[java]
+format = "via [☕️ $version](bold fg:196) "
