@@ -1,0 +1,1 @@
+- fish_variables : variables on fish and including prompt colors
