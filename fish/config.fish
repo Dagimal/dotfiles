@@ -15,3 +15,7 @@ eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 zoxide init fish | source
 
+#color
+set -g fish_color_option white
+set -g fish_color_search_match --background=normal
+set -g fish_color_search_match white
