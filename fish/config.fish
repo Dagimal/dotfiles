@@ -2,20 +2,25 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-function ssf
-	set host $(grep -e "^Host " ~/.ssh/config | awk '{print $2}' | fzf)
-	echo "SSH session started, connecting to" $host
-	ssh $host
+if status is-login
+    cd ~
 end
 
-alias ssh-config="nano /home/dagimal/.ssh/config"
-
-#export GIT_SSH_COMMAND="ssh -oPort=23"
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 zoxide init fish | source
+set -gx PATH $HOME/.local/bin $PATH
 
-#color
-set -g fish_color_option white
-set -g fish_color_search_match --background=normal
-set -g fish_color_search_match white
+set -x GPG_TTY (tty)
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/dagimal/.local/bin" $PATH
+
+# Claude Code / DeepSeek Configuration
+set -gx ANTHROPIC_BASE_URL https://api.deepseek.com/anthropic
+set -gx ANTHROPIC_AUTH_TOKEN "sk-59f99f71447444b3bb591a95ef455fb6"
+set -gx ANTHROPIC_MODEL "deepseek-v4-pro[1m]"
+set -gx ANTHROPIC_DEFAULT_OPUS_MODEL "deepseek-v4-pro[1m]"
+set -gx ANTHROPIC_DEFAULT_SONNET_MODEL "deepseek-v4-pro[1m]"
+set -gx ANTHROPIC_DEFAULT_HAIKU_MODEL "deepseek-v4-flash"
+set -gx CLAUDE_CODE_SUBAGENT_MODEL "deepseek-v4-flash"
+set -gx CLAUDE_CODE_EFFORT_LEVEL "high"
